@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +37,9 @@ public class DetailActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cw -> {
                     name.setText(cw.name);
-                    sunrise.setText(new Date(cw.sys.sunrise).toString());
+                    Date d = new Date((long) (cw.sys.sunrise * 1000f));
+                    SimpleDateFormat f = new SimpleDateFormat("HH:mm z", Locale.getDefault());
+                    sunrise.setText(f.format(d));
                     overcast.setText(cw.weather.get(0).description);
 
                 }, throwable -> Log.e(this.getClass().getName(), "error", throwable));

@@ -3,16 +3,12 @@ package org.calber.citiesweather;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,49 +49,12 @@ public class UiTest {
 
     @Test
     public void test() {
-        onView(allOf(withId(R.id.root),
-                childAtPosition(childAtPosition(withId(R.id.list), 0), 0),
-                isDisplayed())).perform(click());
 
-        onView(allOf(withId(R.id.name), childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
-                isDisplayed())).check(matches(withText("London")));
-        pressBack();
+        for (int i = 0; i < Application.cities.length; i++) {
+            onView(ViewMatchers.withId(R.id.list)).perform(RecyclerViewActions.actionOnItemAtPosition(i, click()));
+            onView(allOf(withId(R.id.name), isDisplayed())).check(matches(withText(Application.cities[i])));
+            pressBack();
+        }
 
-        onView(allOf(withId(R.id.root), childAtPosition(
-                childAtPosition(withId(R.id.list), 1), 0),
-                isDisplayed())).perform(click());
-
-        onView(allOf(withId(R.id.name), childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
-                isDisplayed())).check(matches(withText("Glasgow")));
-        pressBack();
-
-        onView(allOf(withId(R.id.root), childAtPosition(
-                childAtPosition(withId(R.id.list), 3), 0),
-                isDisplayed())).perform(click());
-
-        onView(allOf(withId(R.id.name), childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
-                isDisplayed())).check(matches(withText("Toronto")));
-        pressBack();
-
-
-    }
-
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
     }
 }

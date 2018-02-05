@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import static org.calber.citiesweather.Application.cities;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -23,7 +23,7 @@ public class CitiesApiTest {
         ApiController controller = new ApiController();
 
         for (String c : cities) {
-            CityWeather res = controller.weather("London").blockingLast();
+            CityWeather res = controller.weather(c).blockingLast();
             assertNotNull(res);
         }
     }

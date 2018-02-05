@@ -11,7 +11,7 @@ import android.support.test.espresso.IdlingResource;
 public class Application extends android.app.Application {
     public static SimpleIdlingResource apiIdlingResource;
 
-    public static final String cities[] = {"London", "Glasgow", "Manchester", "Toronto", "Rome", "Athen", "Paris", "Amsterdam", "Moscow", "Sidney"};
+    public static final String cities[] = {"London", "Glasgow", "Manchester", "Toronto", "Rome", "Milan", "Paris", "Amsterdam", "Moscow", "Sidney"};
 
     /**
      * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
