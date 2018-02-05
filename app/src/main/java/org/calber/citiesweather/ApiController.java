@@ -47,8 +47,8 @@ class ApiController {
      * https://developer.android.com/training/testing/espresso/idling-resource.html
      */
     private void prepareIdlingResource() {
-        if (Application.ssgapiIdlingResource != null) {
-            Application.ssgapiIdlingResource.setIdleState(false);
+        if (Application.getApiIdlingResource() != null) {
+            Application.apiIdlingResource.setIdleState(false);
         }
     }
 
@@ -56,8 +56,8 @@ class ApiController {
      * https://developer.android.com/training/testing/espresso/idling-resource.html
      */
     private void removeIdlingResource() {
-        if (Application.ssgapiIdlingResource != null) {
-            Application.ssgapiIdlingResource.setIdleState(true);
+        if (Application.getApiIdlingResource() != null) {
+            Application.apiIdlingResource.setIdleState(true);
         }
     }
 
