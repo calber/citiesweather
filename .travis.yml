@@ -7,12 +7,14 @@
       "platform-tools",
       "tools",
       "build-tools-26.1.0",
-      "android-23",
+      "android-22",
       "android-26",
       "sys-img-x86-google_apis_playstore-26",
     ]
   },
   "before_script": [
+    "android list avd"
+    "android list target"
     "echo no | android create avd --force -n test -t google_apis_playstore-26 --abi x86",
     "emulator -avd test -no-audio -no-window &",
     "android-wait-for-emulator",
