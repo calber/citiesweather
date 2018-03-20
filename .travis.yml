@@ -9,7 +9,7 @@
       "build-tools-26.1.0",
       "android-22",
       "android-26",
-      "sys-img-x86-google_apis_playstore-26",
+      "sys-img-armeabi-v7a-android-22",
     ]
   },
   "before_script": [
