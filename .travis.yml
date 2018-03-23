@@ -16,7 +16,7 @@ android:
 before_install:
   - mkdir ${ANDROID_SDK_ROOT}
   - yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT "tools" "build-tools;26.0.1" "extras;android;m2repository"
-  - yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platforms;android-26"
+  - yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platforms;android-26;google_apis;x86"
   - export PATH=${ANDROID_SDK_ROOT}/tools/bin:$PATH
   - which avdmanager
   - echo no | avdmanager create avd --force --name test --package 'system-images;android-26;google_apis;x86'
